@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <malloc.h>
+
+struct node
+{
+	int data;
+	struct node* next;
+};
+
+struct node *head,*newnode,*temp,*p;
+int count = 0;
+struct node *first_node;
+int pos,i;
+
+int insert()
+{
+	newnode = (struct node *)malloc(sizeof(struct node)); // addres
+	printf("Enter the data : ");
+	scanf("%d",&newnode->data);
+	count = count + 1;
+	
+	newnode->next = 0;
+	
+	if(head == 0)
+	{
+		head = newnode;
+		first_node = newnode;
+		temp = newnode;
+	}
+	else
+	{
+		temp->next =newnode;
+		temp = newnode;
+	}
+	
+}
+
+void display()
+{
+	
+	temp = first_node;
+	
+	printf("\nThe values are : ");
+	
+	while(temp!=0)
+	{	
+		printf("%d\t",temp->data);
+		temp = temp->next;
+	}
+}
+void insert_b() // inseret at the beggining
+{
+	
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("\nEnter the data : ");
+	scanf("%d",&newnode -> data);
+	
+	newnode -> next = first_node;
+	head = newnode;
+	first_node = newnode;
+	
+	
+}
+
+void insert_e()
+{
+	newnode = (struct node*)malloc(sizeof(struct node));
+	printf("\nEnter the data : ");
+	scanf("%d",&newnode -> data);	
+	
+	newnode ->next = 0;
+	
+	temp = first_node;
+	
+	while(temp->next!=0)
+	{
+		temp = temp->next;
+	}
+	temp->next = newnode;
+}
+
+void insert_m()
+{
+	
+	i = 1;
+	
+	printf("\nEnter the position : ");
+	scanf("%d",&pos);
+	
+	if(pos>count)
+	{
+		printf("\nInvalid position");
+	}
+	
+	else                      
+	{
+		temp = first_node;           
+		
+		while(i<pos)                              
+		{
+			p = temp;
+			temp = temp->next;                 
+			i++;                 
+		}
+		
+		// printf("The value of p is : %d",p->data);
+		// printf("\nThe value of temp is : %d",temp->data);
+		
+		
+		newnode = (struct node *)malloc(sizeof(struct node));
+	
+		
+		printf("\nEnter the data : ");
+		scanf("%d",&newnode->data);
+		
+		
+		newnode->next = temp->next;
+		temp->next = newnode;
+		
+	}
+	
+	while(temp->next!=0)
+	{
+		temp = temp->next;
+	}
+	
+}
+
+int main()
+{
+	
+	int mb,ab;
+	mb =0;
+	printf("Enter no of digits : ");
+	scanf("%d",&ab);
+	
+	for(mb=1;mb<=ab;mb++)
+	{
+		insert();
+	}
+	
+	insert_m();
+	
+	insert();
+	
+	display();
+	
+	
+}
